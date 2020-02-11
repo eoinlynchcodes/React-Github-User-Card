@@ -6,7 +6,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      data: {}
+      data: {},
+      followers: [],
     };
   }
 
@@ -20,11 +21,26 @@ class App extends Component {
       .catch(error => {
         console.log(error);
       });
+
+      axios.get('https://api.github.com/users/eoinlynchcodes/followers')
+      .then(response => {
+        console.log(response.data);
+        this.setState({ followers: response.data})
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 
   render() {
     // console.log(this.state.data);
-    return <UserCard data={this.state.data}/>;
+    return <UserCard data={this.state.data}
+    followers={
+      this.state.followers.map((item, key) => {
+        return item;
+      })
+    }
+    />;
   }
 }
 

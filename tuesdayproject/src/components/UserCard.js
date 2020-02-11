@@ -9,6 +9,7 @@ class UserCard extends React.Component {
   constructor(props) {
     super(props);
     console.log(this);
+    console.log(this.props.followers);
     this.state = {
       data: this
     };
