@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import axios from "axios";
+import UserCard from './components/UserCard';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      data: []
+      data: {}
     };
   }
 
   componentDidMount() {
-    axios
-      .get("https://api.github.com/users/eoinlynchcodes")
+    axios.get("https://api.github.com/users/eoinlynchcodes")
       .then(response => {
         this.setState({ data: response.data });
-        console.log(this.state.data);
-        console.log(response.data);
+        // console.log(this.state.data);
+        // console.log(response.data);
       })
       .catch(error => {
         console.log(error);
@@ -23,7 +23,8 @@ class App extends Component {
   }
 
   render() {
-    return <h1>Yo</h1>;
+    // console.log(this.state.data);
+    return <UserCard data={this.state.data}/>;
   }
 }
 
